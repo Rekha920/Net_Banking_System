@@ -1,0 +1,39 @@
+mat-card{
+    width: 30%;
+    margin-top: 2%;
+    margin-right: 5%;
+    border-radius: 1rem
+}
+
+mat-form-field,
+input{
+    width : 90%;
+    padding-top: 3%;
+    margin:auto
+}
+
+button{
+    margin-top: 2%;
+    margin-right: 1rem;
+   
+}
+
+p{
+    width: 100%;
+    margin: auto;
+    padding-top: 5%;
+    color: red;
+    font-size: large;
+}
+
+.linkButton {
+    margin-top: 3%;
+    font-size: large;
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    font-family: arial, sans-serif;
+    color: navy;
+    text-decoration: underline;
+    cursor: pointer;
+  }
