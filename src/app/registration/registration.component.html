@@ -1,0 +1,122 @@
+
+<div align="right">
+    <mat-card *ngIf="!continueRegistration"> 
+      <mat-card-title align="left">Registration</mat-card-title>
+        <form (submit)="registerUser(formReference)" #formReference="ngForm">
+            <div  fxLayout="row" fxLayoutAlign="space-evenly center"> 
+            <mat-form-field class="marginBetweenField">
+                    <mat-label>First Name</mat-label>
+                    <input
+                    ngModel
+                    matInput
+                    required
+                    type="text"
+                    name="firstname"
+                    #firstname="ngModel">
+                    <mat-error *ngIf="firstname.invalid">Please enter a valid first name.</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field class="marginBetweenField">
+                    <mat-label>Last Name</mat-label>
+                    <input
+                    ngModel
+                    matInput
+                    required
+                    name="lastname"
+                    #lastname="ngModel"
+                    type="text">
+                    <mat-error *ngIf="lastname.invalid">Please enter a valid last name.</mat-error>
+                </mat-form-field>
+            </div> 
+                <mat-form-field>
+                    <mat-label>Address</mat-label>
+                    <input
+                    ngModel
+                    matInput
+                    required
+                    name="address"
+                    #address="ngModel"
+                    type="text">
+                    <mat-error *ngIf="address.invalid">Please enter a valid address.</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Date Of Birth</mat-label>
+                    <input matInput [matDatepicker]="picker" required ngModel name="dateOfBirth" #dateOfBirth="ngModel">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="dateOfBirth.invalid">Please enter a valid date of birth.</mat-error>
+                  </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Mobile</mat-label>
+                    <input
+                    ngModel
+                    matInput
+                    required
+                    name="mobile"
+                    #mobile="ngModel"
+                    type="text">
+                    <mat-error *ngIf="mobile.invalid">Please enter a valid mobile number.</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Pan card</mat-label>
+                    <input
+                    ngModel
+                    matInput
+                    required
+                    name="pancard"
+                    #pancard="ngModel"
+                    type="text">
+                    <mat-error *ngIf="pancard.invalid">Please enter a valid pan card.</mat-error>
+                </mat-form-field>
+
+                <div align="right">
+                    <button
+                    type="submit" 
+                    mat-raised-button
+                    color="primary">Apply Registration</button>
+                </div>
+                <div><p align="center"> {{ status }} </p></div>
+       </form>
+    </mat-card>
+    <mat-card *ngIf="continueRegistration">
+        <mat-card-title align="left">Registration - Continued..</mat-card-title>
+        <form (submit)="completeRegistration(formReference)" #formReference="ngForm">
+            <mat-form-field>
+                <mat-label>Set Username</mat-label>
+                <input
+                ngModel
+                matInput
+                required
+                type="text"
+                name="username"
+                #username="ngModel">
+                <mat-error *ngIf="username.invalid">Please enter a valid username.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Set Password</mat-label>
+                <input
+                ngModel
+                matInput
+                required
+                name="password"
+                #password="ngModel"
+                [type]="hide ? 'password' : 'text'">
+                <mat-error *ngIf="password.invalid">Please enter a valid password.</mat-error>
+                <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </mat-form-field>
+
+            <div align="right">
+                <button 
+                mat-raised-button
+                (click)="resetRegistrationForm(formReference)" 
+                color="accent">Reset</button>
+                <button
+                type="submit" 
+                mat-raised-button
+                color="primary">Complete Registration</button>
+            </div>
+
+    </form>
+    </mat-card>
+</div>

@@ -1,0 +1,77 @@
+.account {
+    width: 70%;
+    margin-top: 1%;
+    margin-left: 5%;
+    border-radius: 1rem
+}
+
+p {
+    margin-top: 0.5%;
+    font-style: italic;
+    display: inline-block;
+    font-weight: bold
+}
+
+.transaction{
+    margin-top: 3%;
+    border-radius: 1rem
+}
+
+.image{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.debit-credit{
+    display: block
+}
+
+::ng-deep .mat-tab-labels > .mat-tab-label:first-child {
+    display: none;
+  }
+
+  .nextLine {
+      display: block;
+  }
+
+  .sameLine{
+      display: inline-block;
+  }
+
+  .linkButton {
+    margin-top: 5%;
+    font-size:medium;
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    font-family: arial, sans-serif;
+    color: navy;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+  }
+
+  mat-cell{
+    display:flex !important;
+    justify-content:center!important;
+    
+  }
+  
+  mat-header-cell {
+    display:flex;
+    justify-content:center;
+  }
+
+  .transactionDisplay{
+    padding-top: 2%;
+  }
+
+  .toDateFromDate{
+      margin-right: 20px;
+  }

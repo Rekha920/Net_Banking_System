@@ -1,0 +1,46 @@
+<div align="right">
+    <mat-card> 
+        <mat-card-title align="left">Login</mat-card-title>
+            <form (submit)="onFormSubmit(formReference)" #formReference="ngForm">
+                    <mat-form-field>
+                        <mat-label>Username</mat-label>
+                        <input
+                        ngModel
+                        matInput
+                        required
+                        type="text"
+                        name="username"
+                        #username="ngModel">
+                        <mat-error *ngIf="username.invalid">Please enter a valid username.</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Password</mat-label>
+                        <input
+                        ngModel
+                        matInput
+                        required
+                        name="password"
+                        #password="ngModel"
+                        [type]="hide ? 'password' : 'text'">
+                        <mat-error *ngIf="password.invalid">Please enter a valid password.</mat-error>
+                        <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </mat-form-field>
+
+                    <div align="right">
+                        <button 
+                        mat-raised-button 
+                        color="accent" (click)="resetForm(formReference)">Reset</button>
+                        <button
+                        type="submit" 
+                        mat-raised-button
+                        color="primary">Submit</button>
+                    </div>
+                    <div><p align="center"> {{ status }} </p></div>
+
+            </form>
+        <div align="left">
+            <button class="linkButton" (click)="registerUser()">New User ? Register Here</button>
+        </div>
+    </mat-card>
+</div>

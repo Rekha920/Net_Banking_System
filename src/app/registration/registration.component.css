@@ -1,0 +1,24 @@
+mat-card{
+    width: 30%;
+    margin-top: 2%;
+    margin-right: 5%;
+    border-radius: 1rem;
+}
+
+mat-form-field,
+input{
+    width : 90%;
+    padding-top: 3%;
+    margin:auto;
+    display:inline
+}
+
+button{
+    margin-top: 2%;
+    margin-right: 1rem;
+   
+}
+
+.marginBetweenField{
+    margin-right: 20px;
+}
