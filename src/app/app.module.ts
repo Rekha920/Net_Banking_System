@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-//import { FlexLayoutModule } from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -48,7 +48,7 @@ import { AccountComponent } from './account/account.component';
     MatButtonModule,
     MatToolbarModule,
     HttpClientModule,
-    //FlexLayoutModule,
+    FlexLayoutModule,
     AppRoutingModule,
     ReactiveFormsModule,
     MatFormFieldModule,

@@ -5,4 +5,199 @@
    <div>
       <p> Account Type : {{ accountResponse.accountType }}</p>
    </div>
+
+   <mat-card *ngIf="accountResponse.transactions.length > 0" class="transaction">
+      <mat-card-title>Recent Transactions</mat-card-title>
+      <div fxLayout="row" fxLayoutAlign="space-around center">
+         <div *ngFor="let transaction of accountResponse.transactions">
+            <div *ngIf="transaction.debit > 0">
+               <img class ="image" src="assets/debit.png" width="28" height="28">
+               <span align="center" class="debit-credit"> {{ transaction.debit }} INR/-</span>
+               <span align="center" class="debit-credit"> {{ transaction.transactionDate }} </span>     
+            </div>
+            <div *ngIf="transaction.credit > 0">
+               <img class ="image" src="assets/credit.jpg" width="30" height="30">
+               <span align="center" class="debit-credit"> {{ transaction.credit }} INR/-</span>
+               <span align="center" class="debit-credit"> {{ transaction.transactionDate }} </span>
+            </div>
+         </div>
+      </div>
+   </mat-card>
+   <div style="margin-top: 2rem;">
+      <mat-tab-group (selectedTabChange)="tabClick($event)" dynamicHeight animationDuration="800ms">
+         <mat-tab style="display: none;"></mat-tab>
+         <mat-tab label="Transfer Funds">
+            <mat-card >
+               <form (submit)="transferFunds(formReference)" #formReference="ngForm">
+               <div *ngIf="!registerPayeeFLow" fxLayout="row" fxLayoutAlign="space-between">
+                  <mat-form-field appearance="fill">
+                     <mat-label>Select Payee</mat-label>
+                     <mat-select (selectionChange)="payeeSelected($event)">
+                     <mat-option *ngFor="let payee of payeeResponse" [value]="payee.payeeAccountNumber">
+                     {{ payee.payeeName }}
+                     </mat-option>
+                     </mat-select>
+                  </mat-form-field>
+                  <div style="padding-top: 1.8%;">
+                     <button class="linkButton" (click)="addPayee(true)">Register New Payee</button>
+                  </div>
+               </div>
+               <div style="padding-top: 2%;"*ngIf="registerPayeeFLow">
+                  <form (submit)="registerPayee(formReference)" #formReference="ngForm">
+                  <p>Register Payee</p>
+                  <div fxLayout="row" fxLayoutAlign="space-around center">
+                     <mat-form-field>
+                        <mat-label >Payee Account No</mat-label>
+                        <input 
+                           matInput
+                           required 
+                           type="text"
+                           ngModel
+                           name="payeeAccountNo"
+                           #payeeAccountNo="ngModel">
+                        <mat-error *ngIf="payeeAccountNo.invalid">Please enter a valid account no.</mat-error>
+                     </mat-form-field>
+                     <mat-form-field>
+                        <mat-label >Payee Name</mat-label>
+                        <input 
+                           matInput
+                           required 
+                           type="text"
+                           ngModel
+                           name="payeeName"
+                           #payeeName="ngModel">
+                        <mat-error *ngIf="payeeName.invalid">Please enter a valid name.</mat-error>
+                     </mat-form-field>
+                     <button
+                        type="submit" 
+                        mat-raised-button
+                        color="primary">Add Payee</button>
+                     <button
+                        (click)="addPayee(false)"
+                        mat-raised-button
+                        color="accent">Cancel</button>
+                  </div>
+                  </form>
+               </div>
+               <div *ngIf="isPayeeSelected && !registerPayeeFLow" fxLayout="row" fxLayoutAlign="space-around center">
+                  <mat-form-field>
+                     <mat-label >Transfer Amount</mat-label>
+                     <input 
+                        matInput
+                        required 
+                        type="text"
+                        ngModel
+                        name="amount"
+                        #amount="ngModel">
+                     <mat-error *ngIf="amount.invalid">Please enter a valid amount.</mat-error>
+                  </mat-form-field>
+                  <mat-form-field>
+                     <mat-label>Remarks (Optional)</mat-label>
+                     <input 
+                        matInput
+                        type="text"
+                        name="remarks"
+                        ngModel
+                        #remarks="ngModel"> 
+                  </mat-form-field>
+                  <p> From Account No : {{ accountResponse.accountId }}</p>
+                  <button type="submit" 
+                     mat-raised-button
+                     color="primary">Transfer</button>      
+               </div>
+               </form>
+               <div align="center"> <p class="message"> {{ inSuffucientFundsMessage }} </p></div>
+            </mat-card>
+         </mat-tab>
+         <mat-tab label="Profile">
+            <form (submit)="updateUserProfile(updateProfileReference)" #updateProfileReference="ngForm">
+            <div style="padding-top: 3%;" fxLayout="row" fxLayoutAlign="space-evenly center">
+               <div fxLayout="column" fxLayoutAlign="space-evenly center">
+                  <div [hidden]="true">
+                     <mat-form-field>
+                        <input 
+                        matInput
+                        ngModel
+                        type="text"
+                        name="registrationId"
+                        #registrationId="ngModel"
+                        [(ngModel)]="userProfile.registrationId">
+                     </mat-form-field>
+                  </div>
+                  <mat-form-field>
+                     <mat-label>First Name</mat-label>
+                     <input 
+                     matInput
+                     ngModel
+                     type="text"
+                     name="firstname"
+                     #firstname="ngModel"
+                     [(ngModel)]="userProfile.firstname">
+                  </mat-form-field>
+                  <mat-form-field>
+                        <mat-label>Date Of Birth</mat-label>
+                        <input
+                        class="readonly" 
+                        matInput
+                        [readonly] = "true"
+                        ngModel
+                        type="text"
+                        name="dateOfBirth"
+                        #firstname="ngModel"
+                        [(ngModel)]="userProfile.dateOfBirth">
+                  </mat-form-field>
+                  <mat-form-field>
+                     <mat-label>Mobile</mat-label>
+                     <input 
+                     matInput
+                     ngModel
+                     type="text"
+                     name="mobile"
+                     #mobile="ngModel"
+                     [(ngModel)]="userProfile.mobile">
+                  </mat-form-field>
+               </div>
+               <div fxLayout="column" fxLayoutAlign="space-evenly center">
+                  <mat-form-field>
+                     <mat-label>Last Name</mat-label>
+                     <input 
+                     matInput
+                     ngModel
+                     type="text"
+                     name="lastname"
+                     #lastname="ngModel"
+                     [(ngModel)]="userProfile.lastname">
+                  </mat-form-field>
+                  <mat-form-field>
+                     <mat-label>Address</mat-label>
+                     <input 
+                     matInput
+                     ngModel
+                     type="text"
+                     name="address"
+                     #address="ngModel"
+                     [(ngModel)]="userProfile.address">
+                  </mat-form-field>
+                  <mat-form-field>
+                     <mat-label>Pan Card</mat-label>
+                     <input 
+                     matInput
+                     ngModel
+                     type="text"
+                     name="pancard"
+                     #pancard="ngModel"
+                     [(ngModel)]="userProfile.pancard">
+                  </mat-form-field>
+               </div>
+            </div>
+            <div [hidden]="userProfileUpdatedMessageHidden" style="float: left;">
+               <p> User Profile Updated SuccessFully !!! </p>
+            </div>
+            <div style="float: right;">
+               <button type="submit" color="primary" mat-raised-button>Update</button>
+            </div>
+            </form>
+         </mat-tab>
+      </mat-tab-group>
+   </div>
 </mat-card>

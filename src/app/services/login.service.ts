@@ -21,7 +21,7 @@ export class LoginService{
 
     addCredentials(loginRequest: LoginRequest, registrationId:number):Observable<LoginResponse>{
         
-        let urlEndpoint:any = "http://localhost:8080/login/add/" + registrationId;
+        let urlEndpoint:any = "http://localhost:8080/login/add/"+registrationId;
         return this.httpClient.post<LoginResponse>(urlEndpoint, loginRequest);
     }
 
