@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
@@ -24,15 +24,14 @@ export class RegistrationComponent implements OnInit {
   private router: Router;
   hide:any
 
-  constructor(registrationService: RegistrationService,
-   loginService: LoginService, router: Router) {
+  constructor(registrationService: RegistrationService, loginService: LoginService, router: Router) {
     this.registrationService = registrationService;
     this.loginService = loginService;
     this.router = router;
    }
 
   ngOnInit(): void {
-   if(this.registrationId !=0){
+    if(this.registrationId !=0){
     this.continueRegistration = false;
     }
     this.hide = true;
@@ -62,6 +61,7 @@ export class RegistrationComponent implements OnInit {
           this.status = 'Registration Failed';
         }
     },(error)=>console.log('Error in Calling Api'));
+
   }
 
 

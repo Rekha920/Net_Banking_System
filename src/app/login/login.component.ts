@@ -40,9 +40,9 @@ export class LoginComponent implements OnInit {
      if(loginResponse.status =='failed'){
        this.status = 'username - password combination mismatch';
      }else{
-       this.router.navigate(['/account', loginResponse.accountId]);
+       this.router.navigate(['/account',loginResponse.accountId]);
      }
-   },(error)=>this.status ='Error In Calling Login Api');
+   },(error)=>this.status ='Error In Calling Api');
   }
 
   resetForm(loginForm: NgForm){

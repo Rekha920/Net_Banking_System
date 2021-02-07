@@ -15,7 +15,7 @@ export class AccountService{
     fetchAccountDetails(accountId:number, limit:number):Observable<AccountResponse>{
 
         let params = new HttpParams;
-        params = params.append('limit',limit.toString());
+        params = params.append('limit', limit.toString());
         let urlEndpoint:any = "http://localhost:8080/account/"+accountId;
         return this.httpClient.get<AccountResponse>(urlEndpoint,{
             params:params
