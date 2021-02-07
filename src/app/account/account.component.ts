@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AccountResponse } from '../models/account-response.model';
 import { AccountService } from '../services/account.service';
 
@@ -11,13 +11,14 @@ import { AccountService } from '../services/account.service';
 export class AccountComponent implements OnInit {
 
   accountId: number;
-  private route : ActivatedRoute;
+  private route:ActivatedRoute;
+  private router : Router;
   accountResponse : AccountResponse;
   private accountService: AccountService
 
-  constructor(accountService: AccountService, route : ActivatedRoute) {
-    
-    this.route = route;
+  constructor(accountService: AccountService, router : Router,route:ActivatedRoute) {
+    this.route=route;
+    this.router = router;
     this.accountService = accountService;
    }
 
@@ -32,5 +33,8 @@ export class AccountComponent implements OnInit {
       this.accountResponse =  accountResponse;
     },(error=>console.log('Error in Calling Api')));
   }
-
+  profileData()
+  {
+    this.router.navigate(['/account/profile']);
+  }
 }

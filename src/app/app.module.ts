@@ -26,6 +26,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AccountComponent } from './account/account.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [ 
@@ -33,7 +34,8 @@ import { AccountComponent } from './account/account.component';
     LoginComponent,
     RegistrationComponent,
     HeaderComponent,
-    AccountComponent
+    AccountComponent,
+    ProfileComponent
   ],
   imports: [
     FormsModule,

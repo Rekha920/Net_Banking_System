@@ -1,8 +1,9 @@
 <mat-card class="account">
-   <mat-card-title >Account Details</mat-card-title>
-   <p> Welcome {{ accountResponse.customerName }} </p>
-   <p style="float:right;">Closing Balance : {{ accountResponse.balance }} INR/- </p>
-   <div>
-      <p> Account Type : {{ accountResponse.accountType }}</p>
-   </div>
+    <mat-card-title>Account Details</mat-card-title>
+    <p> Welcome {{ accountResponse.customerName }} </p>
+    <p style="float:right;">Closing Balance : {{ accountResponse.balance }} INR/- </p>
+    <div>
+        <p> Account Type : {{ accountResponse.accountType }}</p>
+    </div>
+    <button (click)="profileData()">Profile</button>
 </mat-card>
